@@ -118,6 +118,7 @@ public class ApkEnv {
         String target = "libbgmi.so";
         FLog.info("Reference-compatible loader target forced for package " + packageName + ": " + target);
         syncSdkLoaderTarget(target);
+        forceRNativeStaticLoad();
         ensureSdkNativeCoreInit();
 
         String loaderBaseDir = is_online
@@ -184,6 +185,16 @@ public class ApkEnv {
     }
     
 
+
+
+    private void forceRNativeStaticLoad() {
+        try {
+            Class.forName("top.niunaijun.blackbox.core.RNative", true, ApkEnv.class.getClassLoader());
+            FLog.info("RNative class loaded (static init attempted)");
+        } catch (Throwable err) {
+            FLog.error("Unable to load RNative class: " + err.getMessage());
+        }
+    }
 
     private void ensureSdkNativeCoreInit() {
         String[] candidateClasses = new String[]{
