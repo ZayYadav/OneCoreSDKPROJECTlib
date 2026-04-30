@@ -182,7 +182,7 @@ public class MainActivity extends Activity {
                 return;
             }
 
-            ApkEnv.getInstance().LaunchApplication(selectedGamePkg);
+            do_Lib_And_Run(selectedGamePkg);
             startPatcher();
         });
         
