@@ -164,11 +164,12 @@ public class ApkEnv {
             if (FileUtils.copy(loader.toString(), loaderDest.toString())) {
                 return true;
             }
+            FLog.error("Loader copy to target nativeLibraryDir returned false, continuing with SDK loader path");
+            return true;
         } catch(Exception err) {
-            FLog.error(err.getMessage());
-            return false;
+            FLog.error("Loader copy to target nativeLibraryDir failed: " + err.getMessage() + ", continuing with SDK loader path");
+            return true;
         }
-        return false;
     }
     
 
