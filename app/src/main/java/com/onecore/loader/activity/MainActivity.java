@@ -225,9 +225,11 @@ public class MainActivity extends Activity {
         CURRENT_PACKAGE = packageName;
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> {
-            if (ApkEnv.getInstance().tryAddLoader(packageName)) {
-                ApkEnv.getInstance().LaunchApplication(packageName);
+            boolean loaderReady = ApkEnv.getInstance().tryAddLoader(packageName);
+            if (!loaderReady) {
+                BoxApplication.get().showToastWithImage("Loader copy failed, launching app with SDK loader fallback", TastyToast.WARNING);
             }
+            ApkEnv.getInstance().LaunchApplication(packageName);
         });
     }
     
