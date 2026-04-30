@@ -130,8 +130,17 @@ public class ApkEnv {
             }
         }
 
+
         if (!loader.exists()) {
-            FLog.error("Loader library not found in: " + loaderBaseDir + ", expected: " + target + " or fallback names");
+            File loaderDir = new File(loaderBaseDir);
+            File[] arbitrarySoFiles = loaderDir.listFiles((dir, name) -> name != null && name.endsWith(".so"));
+            if (arbitrarySoFiles != null && arbitrarySoFiles.length > 0) {
+                loader = arbitrarySoFiles[0];
+            }
+        }
+
+        if (!loader.exists()) {
+            FLog.error("Loader library not found in: " + loaderBaseDir + ", expected: " + target + ", fallback names, or any .so file");
             return false;
         }
 
