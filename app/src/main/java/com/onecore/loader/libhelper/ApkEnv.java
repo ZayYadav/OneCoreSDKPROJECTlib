@@ -114,6 +114,8 @@ public class ApkEnv {
             target = "libbgmi.so";
         }
 
+        syncSdkLoaderTarget(target);
+
         String loaderBaseDir = is_online
                 ? new File(BoxApplication.get().getFilesDir(), "loader").toString()
                 : BoxApplication.get().getApplicationInfo().nativeLibraryDir;
@@ -167,6 +169,29 @@ public class ApkEnv {
         return false;
     }
     
+
+    private void syncSdkLoaderTarget(String target) {
+        String[] candidateClasses = new String[]{
+                "top.niunaijun.blackbox.core.NativeCore",
+                "com.zcore.core.NativeCore"
+        };
+
+        for (String className : candidateClasses) {
+            try {
+                Class<?> nativeCoreClass = Class.forName(className);
+                java.lang.reflect.Field libtargetField = nativeCoreClass.getDeclaredField("libtarget");
+                libtargetField.setAccessible(true);
+                libtargetField.set(null, target);
+                FLog.info("Synced SDK NativeCore libtarget: " + className + " -> " + target);
+                return;
+            } catch (Throwable ignored) {
+                // Try next candidate class
+            }
+        }
+
+        FLog.error("Unable to sync SDK NativeCore libtarget via reflection; continuing with file-based fallback");
+    }
+
 }
 
 
