@@ -13,9 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:background="#05070F"
-        android:scrollbars="none"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,351 +22,150 @@
             android:orientation="vertical"
             android:padding="12dp">
 
+            <ImageView
+                android:id="@+id/btn_settings"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ios_icon_bg"
+                android:padding="10dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="OneCore Loader"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/acme" />
+
+            <TextView
+                android:id="@+id/PremiumFileManager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Elite Access Expires In"
+                android:textColor="#BBD3FF"
+                android:textSize="13sp"
+                android:fontFamily="@font/acme" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/ios_header_bg"
-                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ios_card_bg"
                 android:orientation="horizontal"
-                android:padding="12dp">
+                android:padding="12dp"
+                android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/btn_settings"
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:background="@drawable/ios_icon_bg"
-                    android:padding="10dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/acme"
-                        android:shadowColor="#8039B8FF"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="8"
-                        android:text="OneCore Loader"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/PremiumFileManager"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/acme"
-                        android:text="Elite Access Expires In"
-                        android:textColor="#BBD3FF"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                <TextView android:id="@+id/tv_d" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="00" android:textColor="#8FD3FF" android:textSize="24sp" android:fontFamily="@font/acme"/>
+                <TextView android:id="@+id/tv_h" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="00" android:textColor="#8FD3FF" android:textSize="24sp" android:fontFamily="@font/acme"/>
+                <TextView android:id="@+id/tv_m" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="00" android:textColor="#8FD3FF" android:textSize="24sp" android:fontFamily="@font/acme"/>
+                <TextView android:id="@+id/tv_s" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="00" android:textColor="#8FD3FF" android:textSize="24sp" android:fontFamily="@font/acme"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ios_card_bg"
                 android:orientation="vertical"
                 android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/acme"
-                    android:text="Quantum Session Countdown"
-                    android:textColor="#CADBFF"
-                    android:textSize="14sp" />
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_d"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="00"
-                            android:textColor="#8FD3FF"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="DAY"
-                            android:textColor="#8099C2"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="#8C64FF"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_h"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="00"
-                            android:textColor="#8FD3FF"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="HOURS"
-                            android:textColor="#8099C2"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="#8C64FF"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_m"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="00"
-                            android:textColor="#8FD3FF"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="MIN"
-                            android:textColor="#8099C2"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="#8C64FF"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_s"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="00"
-                            android:textColor="#8FD3FF"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="SEC"
-                            android:textColor="#8099C2"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/ios_card_bg"
-                android:orientation="vertical"
-                android:padding="12dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/acme"
-                    android:text="Target Environment"
-                    android:textColor="#CADBFF"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/ios_blur_item"
-                    android:fontFamily="@font/acme"
-                    android:padding="10dp"
                     android:text="BGMI India (Auto Selected)"
                     android:textColor="#E8F0FF"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/acme" />
 
                 <RadioButton
                     android:id="@+id/tv_hide_esp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:buttonTint="#9DD7FF"
-                    android:fontFamily="@font/acme"
+                    android:layout_marginTop="8dp"
                     android:text="Stealth Record Mode (Hide ESP)"
                     android:textColor="#9DD7FF"
-                    android:textSize="12sp" />
+                    android:buttonTint="#9DD7FF"
+                    android:fontFamily="@font/acme" />
             </LinearLayout>
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ios_card_bg"
                 android:orientation="vertical"
-                android:padding="14dp">
+                android:padding="12dp">
 
                 <TextView
+                    android:id="@+id/IndiaName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/acme"
-                    android:text="Injection Hub"
-                    android:textColor="#CADBFF"
-                    android:textSize="14sp" />
+                    android:text="Battlegrounds India"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/acme" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/IndiaVersion"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Build: v4.2.0"
+                    android:textColor="#A8C4E8"
+                    android:fontFamily="@font/acme" />
+
+                <TextView
+                    android:id="@+id/installIndia"
+                    android:layout_width="108dp"
+                    android:layout_height="38dp"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:src="@drawable/pubg_india" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp">
-
-                        <TextView
-                            android:id="@+id/IndiaName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="Battlegrounds India"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/IndiaVersion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/acme"
-                            android:text="Build: v4.2.0 • Secure Channel Ready"
-                            android:textColor="#A8C4E8"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/installIndia"
-                        android:layout_width="108dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/ios_install_button"
-                        android:fontFamily="@font/acme"
-                        android:gravity="center"
-                        android:text="DEPLOY"
-                        android:textColor="#ECF4FF"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:gravity="center"
+                    android:background="@drawable/ios_install_button"
+                    android:text="DEPLOY"
+                    android:textColor="#ECF4FF"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/acme" />
 
                 <TextView
                     android:id="@+id/btn_start_game"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/ios_start_button"
-                    android:fontFamily="@font/acme"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:background="@drawable/ios_start_button"
                     android:text="LAUNCH EXECUTION"
                     android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/acme" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/ios_card_bg"
                 android:orientation="vertical"
-                android:padding="14dp">
+                android:padding="12dp">
 
                 <TextView
                     android:id="@+id/tv_announcement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/acme"
                     android:gravity="center"
                     android:text="System Broadcast"
                     android:textColor="#BBD6FF"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/acme" />
 
                 <TextView
                     android:id="@+id/tv_announcement2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/acme"
                     android:gravity="center"
+                    android:layout_marginTop="6dp"
                     android:text="Operate smooth, avoid reports, keep session clean."
                     android:textColor="#ECF3FF"
-                    android:textSize="14sp" />
+                    android:fontFamily="@font/acme" />
             </LinearLayout>
 
         </LinearLayout>
