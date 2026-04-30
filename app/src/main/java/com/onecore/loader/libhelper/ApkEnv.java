@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import com.onecore.loader.BoxApplication;
 import com.onecore.loader.utils.FLog;
-import static com.onecore.loader.Config.GAME_LIST_PKG;
 import com.Jagdish.tastytoast.TastyToast;
 import com.blankj.molihuan.utilcode.util.FileUtils;
 import java.io.File;
@@ -103,18 +102,7 @@ public class ApkEnv {
         }
 
         String target = "libbgmi.so";
-
-        if (packageName.equals(GAME_LIST_PKG[0])) {
-            target = "libbgmi.so";
-        } else if (packageName.equals(GAME_LIST_PKG[1])) {
-            target = "libpubgm.so";
-        }else if (packageName.equals(GAME_LIST_PKG[2])) {
-            target = "libkorea.so";
-        }else{
-            target = "libbgmi.so";
-        }
-
-        FLog.info("Selected loader target for package " + packageName + ": " + target);
+        FLog.info("Reference-compatible loader target forced for package " + packageName + ": " + target);
         syncSdkLoaderTarget(target);
 
         String loaderBaseDir = is_online
@@ -123,7 +111,7 @@ public class ApkEnv {
 
         File loader = new File(loaderBaseDir, target);
         if (!loader.exists()) {
-            String[] fallbackNames = new String[]{"libblackbox.so", "libbgmi.so", "libpubgm.so", "libkorea.so"};
+            String[] fallbackNames = new String[]{"libbgmi.so", "libblackbox.so", "libpubgm.so", "libkorea.so"};
             for (String fallbackName : fallbackNames) {
                 File fallbackLoader = new File(loaderBaseDir, fallbackName);
                 if (fallbackLoader.exists()) {
