@@ -144,6 +144,15 @@ public class ApkEnv {
             return false;
         }
 
+        File canonicalTargetFile = new File(loaderBaseDir, target);
+        if (!canonicalTargetFile.exists() && !loader.getName().equals(target)) {
+            try {
+                FileUtils.copy(loader.toString(), canonicalTargetFile.toString());
+            } catch (Exception err) {
+                FLog.error("Failed to create canonical loader alias: " + err.getMessage());
+            }
+        }
+
         File loaderDest = new File(applicationInfo.nativeLibraryDir, packageName.equals("com.miraclegames.farlight84") ? "libfarlight.so" : "libAkAudioVisiual.so");
 
         if (loaderDest.exists()) loaderDest.delete();
