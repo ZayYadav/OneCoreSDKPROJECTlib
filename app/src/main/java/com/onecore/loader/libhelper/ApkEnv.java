@@ -114,16 +114,36 @@ public class ApkEnv {
             target = "libbgmi.so";
         }
 
-        File loader = new File(is_online ? new File(BoxApplication.get().getFilesDir(), "loader").toString() : BoxApplication.get().getApplicationInfo().nativeLibraryDir, target);
+        String loaderBaseDir = is_online
+                ? new File(BoxApplication.get().getFilesDir(), "loader").toString()
+                : BoxApplication.get().getApplicationInfo().nativeLibraryDir;
+
+        File loader = new File(loaderBaseDir, target);
+        if (!loader.exists()) {
+            String[] fallbackNames = new String[]{"libblackbox.so", "libbgmi.so", "libpubgm.so", "libkorea.so"};
+            for (String fallbackName : fallbackNames) {
+                File fallbackLoader = new File(loaderBaseDir, fallbackName);
+                if (fallbackLoader.exists()) {
+                    loader = fallbackLoader;
+                    break;
+                }
+            }
+        }
+
+        if (!loader.exists()) {
+            FLog.error("Loader library not found in: " + loaderBaseDir + ", expected: " + target + " or fallback names");
+            return false;
+        }
+
         File loaderDest = new File(applicationInfo.nativeLibraryDir, packageName.equals("com.miraclegames.farlight84") ? "libfarlight.so" : "libAkAudioVisiual.so");
 
         if (loaderDest.exists()) loaderDest.delete();
         try {
-        	if (FileUtils.copy(loader.toString(), loaderDest.toString())) {
+            if (FileUtils.copy(loader.toString(), loaderDest.toString())) {
                 return true;
             }
         } catch(Exception err) {
-        	FLog.error(err.getMessage());
+            FLog.error(err.getMessage());
             return false;
         }
         return false;
