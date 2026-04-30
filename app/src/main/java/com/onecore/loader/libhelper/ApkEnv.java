@@ -2,6 +2,7 @@ package com.onecore.loader.libhelper;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import com.onecore.loader.BoxApplication;
 import com.onecore.loader.utils.FLog;
 import com.Jagdish.tastytoast.TastyToast;
@@ -117,6 +118,7 @@ public class ApkEnv {
         String target = "libbgmi.so";
         FLog.info("Reference-compatible loader target forced for package " + packageName + ": " + target);
         syncSdkLoaderTarget(target);
+        ensureSdkNativeCoreInit();
 
         String loaderBaseDir = is_online
                 ? new File(BoxApplication.get().getFilesDir(), "loader").toString()
@@ -172,6 +174,38 @@ public class ApkEnv {
         }
     }
     
+
+
+    private void ensureSdkNativeCoreInit() {
+        String[] candidateClasses = new String[]{
+                "top.niunaijun.blackbox.core.NativeCore",
+                "com.zcore.core.NativeCore"
+        };
+
+        for (String className : candidateClasses) {
+            try {
+                Class<?> nativeCoreClass = Class.forName(className);
+                try {
+                    java.lang.reflect.Method initMethod = nativeCoreClass.getDeclaredMethod("init", int.class);
+                    initMethod.setAccessible(true);
+                    initMethod.invoke(null, Build.VERSION.SDK_INT);
+                } catch (Throwable ignored) {
+                }
+                try {
+                    java.lang.reflect.Method hideXposedMethod = nativeCoreClass.getDeclaredMethod("hideXposed");
+                    hideXposedMethod.setAccessible(true);
+                    hideXposedMethod.invoke(null);
+                } catch (Throwable ignored) {
+                }
+                FLog.info("Ensured SDK NativeCore init sequence for: " + className);
+                return;
+            } catch (Throwable ignored) {
+                // Continue trying known SDK variants
+            }
+        }
+
+        FLog.error("Unable to initialize SDK NativeCore via reflection");
+    }
 
     private void syncSdkLoaderTarget(String target) {
         String[] candidateClasses = new String[]{
