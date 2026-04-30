@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#060913"
+    android:background="#05070F"
     android:scrollbars="none">
 
     <LinearLayout
@@ -16,16 +15,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/ios_header_bg"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="12dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal"
+            android:padding="12dp">
 
             <ImageView
                 android:id="@+id/btn_settings"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
                 android:background="@drawable/ios_icon_bg"
                 android:padding="10dp"
                 android:scaleType="centerCrop"
@@ -41,20 +40,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Neon Premium Loader"
-                    android:textColor="#C5D6FF"
-                    android:textSize="14sp"
+                    android:text="OneCore Loader"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:fontFamily="@font/acme"
-                    android:letterSpacing="0.06" />
+                    android:shadowColor="#8039B8FF"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="8" />
 
                 <TextView
                     android:id="@+id/PremiumFileManager"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Premium Subscription Ends On"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:layout_marginTop="2dp"
+                    android:text="Elite Access Expires In"
+                    android:textColor="#BBD3FF"
+                    android:textSize="13sp"
                     android:fontFamily="@font/acme" />
             </LinearLayout>
         </LinearLayout>
@@ -62,35 +65,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/ios_card_bg"
             android:orientation="vertical"
-            android:padding="12dp"
-            android:layout_marginBottom="10dp">
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantum Session Countdown"
+                android:textColor="#CADBFF"
+                android:textSize="14sp"
+                android:fontFamily="@font/acme" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <TextView android:id="@+id/tv_d" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8DD0FF" android:textSize="24sp" android:textStyle="bold" android:fontFamily="@font/acme"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DAY" android:textColor="#87A1C5" android:textSize="10sp" android:fontFamily="@font/acme"/>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tv_d" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8FD3FF" android:textSize="26sp" android:textStyle="bold" android:fontFamily="@font/acme" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DAY" android:textColor="#8099C2" android:textSize="10sp" android:fontFamily="@font/acme" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#9268FF" android:textSize="22sp" android:textStyle="bold"/>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <TextView android:id="@+id/tv_h" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8DD0FF" android:textSize="24sp" android:textStyle="bold" android:fontFamily="@font/acme"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HOURS" android:textColor="#87A1C5" android:textSize="10sp" android:fontFamily="@font/acme"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#8C64FF" android:textSize="24sp" android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tv_h" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8FD3FF" android:textSize="26sp" android:textStyle="bold" android:fontFamily="@font/acme" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HOURS" android:textColor="#8099C2" android:textSize="10sp" android:fontFamily="@font/acme" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#9268FF" android:textSize="22sp" android:textStyle="bold"/>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <TextView android:id="@+id/tv_m" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8DD0FF" android:textSize="24sp" android:textStyle="bold" android:fontFamily="@font/acme"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MINUTE" android:textColor="#87A1C5" android:textSize="10sp" android:fontFamily="@font/acme"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#8C64FF" android:textSize="24sp" android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tv_m" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8FD3FF" android:textSize="26sp" android:textStyle="bold" android:fontFamily="@font/acme" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MIN" android:textColor="#8099C2" android:textSize="10sp" android:fontFamily="@font/acme" />
                 </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#9268FF" android:textSize="22sp" android:textStyle="bold"/>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <TextView android:id="@+id/tv_s" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8DD0FF" android:textSize="24sp" android:textStyle="bold" android:fontFamily="@font/acme"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SECOND" android:textColor="#87A1C5" android:textSize="10sp" android:fontFamily="@font/acme"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textColor="#8C64FF" android:textSize="24sp" android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tv_s" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00" android:textColor="#8FD3FF" android:textSize="26sp" android:textStyle="bold" android:fontFamily="@font/acme" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEC" android:textColor="#8099C2" android:textSize="10sp" android:fontFamily="@font/acme" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -98,16 +116,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/ios_card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical"
+            android:padding="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Game Selector"
-                android:textColor="#C5D6FF"
+                android:text="Target Environment"
+                android:textColor="#CADBFF"
                 android:textSize="14sp"
                 android:fontFamily="@font/acme" />
 
@@ -115,19 +133,19 @@
                 android:id="@+id/radio_group_games"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:layout_marginTop="8dp">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/radio_india"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="India"
-                    android:textColor="#E7F0FF"
-                    android:buttonTint="#7DC3FF"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/acme" />
+                    android:buttonTint="#88CCFF"
+                    android:fontFamily="@font/acme"
+                    android:text="BGMI India"
+                    android:textColor="#E8F0FF"
+                    android:textStyle="bold" />
             </RadioGroup>
 
             <RadioButton
@@ -135,26 +153,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Hide ESP While Screen Recording"
-                android:textSize="12sp"
-                android:textColor="#A4D7FF"
-                android:buttonTint="#A4D7FF"
-                android:fontFamily="@font/acme" />
+                android:buttonTint="#9DD7FF"
+                android:fontFamily="@font/acme"
+                android:text="Stealth Record Mode (Hide ESP)"
+                android:textColor="#9DD7FF"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/ios_card_bg"
-            android:padding="14dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Injection Hub"
+                android:textColor="#CADBFF"
+                android:textSize="14sp"
+                android:fontFamily="@font/acme" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="62dp"
@@ -172,46 +199,46 @@
                         android:id="@+id/IndiaName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Battlegrounds"
+                        android:text="Battlegrounds India"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
                         android:textSize="16sp"
+                        android:textStyle="bold"
                         android:fontFamily="@font/acme" />
 
                     <TextView
                         android:id="@+id/IndiaVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Version: 4.2.0"
-                        android:textColor="#9AB7DE"
-                        android:textSize="12sp"
+                        android:text="Build: v4.2.0 • Secure Channel Ready"
+                        android:textColor="#A8C4E8"
+                        android:textSize="11sp"
                         android:fontFamily="@font/acme" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/installIndia"
-                    android:layout_width="98dp"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="INSTALL"
-                    android:textColor="#EAF3FF"
-                    android:textStyle="bold"
+                    android:layout_width="108dp"
+                    android:layout_height="38dp"
                     android:background="@drawable/ios_install_button"
-                    android:fontFamily="@font/acme" />
+                    android:fontFamily="@font/acme"
+                    android:gravity="center"
+                    android:text="DEPLOY"
+                    android:textColor="#ECF4FF"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/btn_start_game"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="14dp"
-                android:gravity="center"
-                android:text="START GAME"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
+                android:background="@drawable/ios_start_button"
                 android:fontFamily="@font/acme"
-                android:background="@drawable/ios_start_button" />
+                android:gravity="center"
+                android:text="LAUNCH EXECUTION"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -225,23 +252,23 @@
                 android:id="@+id/tv_announcement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/acme"
                 android:gravity="center"
-                android:text="Premium Announcement"
+                android:text="System Broadcast"
+                android:textColor="#BBD6FF"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#B8D6FF"
-                android:fontFamily="@font/acme" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_announcement2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/acme"
                 android:gravity="center"
-                android:text="Play Safe Avoid Report | Kill Limit 10"
-                android:textColor="#EAF3FF"
-                android:textSize="14sp"
-                android:fontFamily="@font/acme" />
+                android:text="Operate smooth, avoid reports, keep session clean."
+                android:textColor="#ECF3FF"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>
