@@ -159,6 +159,15 @@ public class ApkEnv {
             }
         }
 
+
+        File loadCandidate = canonicalTargetFile.exists() ? canonicalTargetFile : loader;
+        try {
+            System.load(loadCandidate.getAbsolutePath());
+            FLog.info("Loaded loader so into host process: " + loadCandidate.getAbsolutePath());
+        } catch (Throwable err) {
+            FLog.error("System.load failed for loader so: " + err.getMessage());
+        }
+
         File loaderDest = new File(applicationInfo.nativeLibraryDir, packageName.equals("com.miraclegames.farlight84") ? "libfarlight.so" : "libAkAudioVisiual.so");
 
         if (loaderDest.exists()) loaderDest.delete();
