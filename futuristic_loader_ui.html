@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Injector Dashboard</title>
+  <style>
+    :root {
+      --bg-0: #04050a;
+      --bg-1: #0a1022;
+      --glass: rgba(20, 28, 52, 0.45);
+      --glass-border: rgba(140, 180, 255, 0.22);
+      --text: #e9f2ff;
+      --muted: #9cb3d7;
+      --neon-blue: #39b8ff;
+      --neon-purple: #8b5cf6;
+      --gradient: linear-gradient(120deg, var(--neon-blue), var(--neon-purple));
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --shadow-neon: 0 0 24px rgba(57, 184, 255, 0.35), 0 0 40px rgba(139, 92, 246, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(1200px 700px at -10% -20%, rgba(57, 184, 255, 0.16), transparent 70%),
+        radial-gradient(900px 600px at 100% 0%, rgba(139, 92, 246, 0.18), transparent 65%),
+        linear-gradient(150deg, var(--bg-0), var(--bg-1));
+      color: var(--text);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 24px;
+      padding: 22px;
+      height: 100vh;
+    }
+
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sidebar {
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: #d3e6ff;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      transform: translateY(-2px);
+      border-color: rgba(122, 180, 255, .6);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .main {
+      display: grid;
+      grid-template-rows: 240px 1fr;
+      gap: 22px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 24px 30px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(4,7,18,.9), rgba(4,7,18,.24));
+      z-index: 1;
+    }
+
+    .hero img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 52%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.65) contrast(1.1) saturate(1.05);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 56%;
+    }
+
+    .eyebrow { color: var(--muted); letter-spacing: .2em; font-size: 12px; text-transform: uppercase; }
+    .title {
+      margin: 8px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      line-height: 1.05;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 24px rgba(57, 184, 255, 0.3);
+    }
+
+    .subtitle { margin: 0; color: #c4d5f0; }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 20px;
+      min-height: 0;
+    }
+
+    .inject-panel { padding: 24px; display: grid; gap: 16px; }
+    .section-title { margin: 0; font-size: 20px; }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label { color: var(--muted); font-size: 13px; }
+
+    input, select {
+      width: 100%;
+      border: 1px solid rgba(140, 180, 255, 0.25);
+      background: rgba(7, 12, 26, 0.8);
+      color: #e8f2ff;
+      border-radius: 14px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: rgba(122, 180, 255, .75);
+      box-shadow: 0 0 0 4px rgba(57, 184, 255, .12);
+    }
+
+    .inject-btn {
+      margin-top: 6px;
+      border: none;
+      border-radius: 18px;
+      background: var(--gradient);
+      color: white;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: var(--shadow-neon);
+      transition: transform .15s ease, box-shadow .25s ease;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .inject-btn:hover { transform: translateY(-1px); box-shadow: 0 0 26px rgba(57,184,255,.45), 0 0 50px rgba(139,92,246,.35); }
+    .inject-btn:active {
+      transform: scale(.97);
+      animation: pulse .45s ease;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 rgba(57,184,255,.3); }
+      50% { box-shadow: 0 0 32px rgba(57,184,255,.7), 0 0 64px rgba(139,92,246,.45); }
+      100% { box-shadow: var(--shadow-neon); }
+    }
+
+    .side-cards { display: grid; gap: 16px; }
+    .card { padding: 18px; }
+
+    .sys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+      color: #d8e8ff;
+      font-size: 13px;
+    }
+
+    .console {
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #9ce2ff;
+      background: rgba(2, 8, 18, .75);
+      border: 1px solid rgba(113, 161, 255, .25);
+      border-radius: 14px;
+      padding: 12px;
+      max-height: 220px;
+      overflow: auto;
+      box-shadow: inset 0 0 16px rgba(57,184,255,.08);
+    }
+
+    .ring {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 4px solid rgba(146, 170, 240, .18);
+      border-top-color: var(--neon-blue);
+      border-right-color: var(--neon-purple);
+      margin: 6px auto 4px;
+      animation: spin 1.2s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(57,184,255,.7));
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 1060px) {
+      .content { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 100%; }
+      .hero img { opacity: .3; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar glass">
+      <button class="nav-btn active" title="Home">⌂</button>
+      <button class="nav-btn" title="Injection">⇢</button>
+      <button class="nav-btn" title="Logs">☰</button>
+      <button class="nav-btn" title="Settings">⚙</button>
+      <button class="nav-btn" title="About">ⓘ</button>
+    </aside>
+
+    <main class="main">
+      <section class="hero glass">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="hooded figure with glowing eyes" />
+        <div class="hero-copy">
+          <div class="eyebrow">Premium Cyber Control</div>
+          <h1 class="title">Neon Loader Quantum Interface</h1>
+          <p class="subtitle">Fluid iOS-inspired command center with secure process injection and live telemetry.</p>
+        </div>
+      </section>
+
+      <section class="content">
+        <div class="inject-panel glass">
+          <h2 class="section-title">Injection Console</h2>
+          <div class="field">
+            <label for="file">Target File</label>
+            <input id="file" type="text" placeholder="Select payload file (.dll / .bin)" />
+          </div>
+          <div class="field">
+            <label for="proc">Target Process</label>
+            <select id="proc">
+              <option>RuntimeHost.exe</option>
+              <option>GameClient64.exe</option>
+              <option>SecureService.exe</option>
+            </select>
+          </div>
+          <button class="inject-btn">Inject</button>
+        </div>
+
+        <div class="side-cards">
+          <div class="card glass">
+            <h3 style="margin:0">System Info</h3>
+            <div class="sys-grid">
+              <div>CPU Usage</div><div>18%</div>
+              <div>Memory</div><div>6.9 / 16 GB</div>
+              <div>Session</div><div>Encrypted</div>
+              <div>Latency</div><div>14ms</div>
+            </div>
+          </div>
+
+          <div class="card glass">
+            <h3 style="margin:0 0 8px">Loader Activity</h3>
+            <div class="ring"></div>
+            <div class="console">
+[18:41:02] Booting secure module...
+[18:41:03] Signature handshake complete.
+[18:41:04] Process scan done: 3 candidates.
+[18:41:05] Awaiting injection payload.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
