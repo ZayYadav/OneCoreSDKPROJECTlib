@@ -129,20 +129,6 @@
                 android:textSize="14sp"
                 android:fontFamily="@font/acme" />
 
-            <RadioGroup
-                android:id="@+id/radio_group_games"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radio_india"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="#88CCFF"
-                    android:fontFamily="@font/acme"
                     android:text="BGMI India"
                     android:textColor="#E8F0FF"
                     android:textStyle="bold" />

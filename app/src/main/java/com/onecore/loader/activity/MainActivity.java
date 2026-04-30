@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.onecore.loader.floating.FloatAim;
 import com.onecore.loader.floating.FloatLogo;
@@ -60,8 +59,7 @@ public class MainActivity extends Activity {
     public static native String FixCrash();
     public String CURRENT_PACKAGE;
     private TextView installIndia, btnStartGame;
-    private RadioGroup gameSelection;
-    private RadioButton radioIndia, tvHideEsp;
+    private RadioButton tvHideEsp;
     
     public static int gameType = 0;
     private boolean isGameLaunched = false;
@@ -90,54 +88,6 @@ public class MainActivity extends Activity {
         GameJsonMods();
         sharedPreferences = getSharedPreferences(getPackageName(), Activity.MODE_PRIVATE);
         CheckFloatViewPermission();
-        
-        selectedGamePkg = "";
-        gameType = 0;
-        isIndiaSelected = false;
-        
-        // Find Views
-        installIndia = findViewById(R.id.installIndia);
-        btnStartGame = findViewById(R.id.btn_start_game);
-        gameSelection = findViewById(R.id.radio_group_games);
-        radioIndia = findViewById(R.id.radio_india);
-        tvHideEsp = findViewById(R.id.tv_hide_esp);
-
-        // Make sure radio button is unchecked initially
-        if (radioIndia != null) {
-            radioIndia.setChecked(false);
-        }
-        
-        // Set RadioButton click listener
-        if (radioIndia != null) {
-            radioIndia.setOnClickListener(v -> {
-                boolean isChecked = radioIndia.isChecked();
-                
-                if (isChecked) {
-                    selectedGamePkg = GAME_LIST_PKG[0];
-                    gameType = 5;
-                    isIndiaSelected = true;
-                    BoxApplication.get().showToastWithImage("✓ India Game Selected ✓", TastyToast.SUCCESS);
-                    
-                    radioIndia.animate()
-                        .scaleX(1.1f)
-                        .scaleY(1.1f)
-                        .setDuration(200)
-                        .withEndAction(() -> {
-                            radioIndia.animate()
-                                .scaleX(1f)
-                                .scaleY(1f)
-                                .setDuration(200)
-                                .start();
-                        })
-                        .start();
-                } else {
-                    selectedGamePkg = "";
-                    gameType = 0;
-                    isIndiaSelected = false;
-                    BoxApplication.get().showToastWithImage("Game deselected", TastyToast.INFO);
-                }
-            });
-        }
         
         // RadioGroup listener
         if (gameSelection != null) {
