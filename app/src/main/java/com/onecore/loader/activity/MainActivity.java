@@ -38,6 +38,7 @@ import com.onecore.loader.libhelper.ApkEnv;
 import com.onecore.loader.libhelper.FileCopyTask;
 import com.onecore.loader.utils.Constants;
 import com.onecore.loader.utils.FLog;
+import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
 import org.json.JSONArray;
@@ -182,7 +183,7 @@ public class MainActivity extends Activity {
                 return;
             }
 
-            ApkEnv.getInstance().LaunchApplication(selectedGamePkg);
+            do_Lib_And_Run(selectedGamePkg);
             startPatcher();
         });
         
@@ -225,9 +226,18 @@ public class MainActivity extends Activity {
         CURRENT_PACKAGE = packageName;
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> {
-            if (ApkEnv.getInstance().tryAddLoader(packageName)) {
-                ApkEnv.getInstance().LaunchApplication(packageName);
+            File loaderFile = new File(getFilesDir(), "loader/libbgmi.so");
+            if (!loaderFile.exists()) {
+                BoxApplication.get().showToastWithImage("Loader missing: files/loader/libbgmi.so (wait for Saved.zip extraction)", TastyToast.ERROR);
+                return;
             }
+
+            boolean loaderReady = ApkEnv.getInstance().tryAddLoader(packageName);
+            if (!loaderReady) {
+                BoxApplication.get().showToastWithImage("Loader setup failed, check logs", TastyToast.ERROR);
+                return;
+            }
+            ApkEnv.getInstance().LaunchApplication(packageName);
         });
     }
     

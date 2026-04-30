@@ -30,6 +30,14 @@ An advanced injector to inject games and apps via Virtual Space without rooting 
 
 ---
 
+
+## 🗂️ Repository Structure Note
+- `NewBlackBox` contains the active SDK source used by the project.
+- `reference_sdk/` is kept only for reference/comparison; do not modify files there during normal development.
+- Remaining main source files (outside `reference_sdk`) are primarily for the loader/injector implementation.
+
+---
+
 ## 🌟 Credits
 **Full Credit & Developer:**  
 ✨『 ↻ **DYNAMIC VIP** ↺ 』✨  

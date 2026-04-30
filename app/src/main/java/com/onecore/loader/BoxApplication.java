@@ -9,6 +9,7 @@ import com.Jagdish.tastytoast.TastyToast;
 import com.onecore.loader.utils.FLog;
 import com.onecore.loader.utils.NetworkConnection;
 import com.onecore.loader.utils.FPrefs;
+import com.onecore.loader.libhelper.VirtualNativeLoaderCallback;
 import com.google.android.material.color.DynamicColors;
 import com.topjohnwu.superuser.Shell;
 import java.io.IOException;
@@ -79,6 +80,7 @@ public class BoxApplication extends Application {
         super.onCreate();
         gApp = this;
         BlackBoxCore.get().doCreate();
+        BlackBoxCore.get().addAppLifecycleCallback(new VirtualNativeLoaderCallback());
         DynamicColors.applyToActivitiesIfAvailable(this);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         NetworkConnection.CheckInternet network = new NetworkConnection.CheckInternet(this);
