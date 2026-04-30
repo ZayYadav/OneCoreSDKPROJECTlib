@@ -82,11 +82,24 @@ public class ApkEnv {
 
         ApplicationInfo applicationInfo = null;
         try {
-         //   applicationInfo = BlackBoxCore.get().getApplicationInfo(packageName);
+            try {
+                java.lang.reflect.Method method = BlackBoxCore.get().getClass().getMethod("getApplicationInfo", String.class);
+                Object result = method.invoke(BlackBoxCore.get(), packageName);
+                if (result instanceof ApplicationInfo) {
+                    applicationInfo = (ApplicationInfo) result;
+                }
+            } catch (Throwable ignored) {
+                // Fallback for SDK variants without getApplicationInfo(String)
+            }
+
+            if (applicationInfo == null) {
+                applicationInfo = getApplicationInfo(packageName);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         if (applicationInfo == null) {
+            FLog.error("ApplicationInfo (container) is null for package: " + packageName);
             return null;
         }
         return applicationInfo;
