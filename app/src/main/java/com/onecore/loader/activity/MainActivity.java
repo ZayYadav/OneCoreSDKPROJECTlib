@@ -89,6 +89,11 @@ public class MainActivity extends Activity {
         sharedPreferences = getSharedPreferences(getPackageName(), Activity.MODE_PRIVATE);
         CheckFloatViewPermission();
         
+        FrameLayout particleContainerMain = findViewById(R.id.particleContainerMain);
+        if (particleContainerMain != null) {
+            particleContainerMain.addView(new SplashActivity.EnhancedParticleView(this));
+        }
+
         // RadioGroup listener
         if (gameSelection != null) {
             gameSelection.setOnCheckedChangeListener((group, checkedId) -> {

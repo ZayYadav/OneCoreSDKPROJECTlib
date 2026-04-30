@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,11 @@ public class CrashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCrashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FrameLayout particleContainer = findViewById(R.id.particleContainerCrash);
+        if (particleContainer != null) {
+            particleContainer.addView(new SplashActivity.EnhancedParticleView(this));
+        }
 
         TastyToast.makeText(this, "Application Crash", TastyToast.LENGTH_LONG, TastyToast.ERROR);
 
