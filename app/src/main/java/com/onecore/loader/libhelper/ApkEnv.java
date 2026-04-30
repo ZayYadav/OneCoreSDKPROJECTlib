@@ -187,6 +187,7 @@ public class ApkEnv {
 
     private void ensureSdkNativeCoreInit() {
         String[] candidateClasses = new String[]{
+                "top.niunaijun.blackbox.core.RNative",
                 "top.niunaijun.blackbox.core.NativeCore",
                 "com.zcore.core.NativeCore"
         };
@@ -218,6 +219,7 @@ public class ApkEnv {
 
     private void syncSdkLoaderTarget(String target) {
         String[] candidateClasses = new String[]{
+                "top.niunaijun.blackbox.core.RNative",
                 "top.niunaijun.blackbox.core.NativeCore",
                 "com.zcore.core.NativeCore"
         };
@@ -225,11 +227,27 @@ public class ApkEnv {
         for (String className : candidateClasses) {
             try {
                 Class<?> nativeCoreClass = Class.forName(className);
-                java.lang.reflect.Field libtargetField = nativeCoreClass.getDeclaredField("libtarget");
-                libtargetField.setAccessible(true);
-                libtargetField.set(null, target);
-                FLog.info("Synced SDK NativeCore libtarget: " + className + " -> " + target);
-                return;
+                boolean updated = false;
+                try {
+                    java.lang.reflect.Field libtargetField = nativeCoreClass.getDeclaredField("libtarget");
+                    libtargetField.setAccessible(true);
+                    libtargetField.set(null, target);
+                    updated = true;
+                } catch (Throwable ignoredField) {
+                }
+
+                try {
+                    java.lang.reflect.Field cField = nativeCoreClass.getDeclaredField("c");
+                    cField.setAccessible(true);
+                    cField.set(null, target);
+                    updated = true;
+                } catch (Throwable ignoredField) {
+                }
+
+                if (updated) {
+                    FLog.info("Synced SDK NativeCore loader target: " + className + " -> " + target);
+                    return;
+                }
             } catch (Throwable ignored) {
                 // Try next candidate class
             }
