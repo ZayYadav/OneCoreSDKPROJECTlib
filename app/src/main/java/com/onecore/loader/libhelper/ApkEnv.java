@@ -114,6 +114,7 @@ public class ApkEnv {
             target = "libbgmi.so";
         }
 
+        FLog.info("Selected loader target for package " + packageName + ": " + target);
         syncSdkLoaderTarget(target);
 
         String loaderBaseDir = is_online
