@@ -1,0 +1,4 @@
+include ':Zcore-sdk'
+
+
+rootProject.name = "RIYAZ-Zcore-SDK"
