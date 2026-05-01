@@ -132,7 +132,7 @@ Java_com_onecore_loader_activity_LoginActivity_Check(JNIEnv *env, jclass clazz, 
     curl = curl_easy_init();
     if (curl) {
         char lol[1000];
-        sprintf(lol, OBFUSCATE("https://darkdevel.dynamicflash.xyz/connect"));
+        sprintf(lol, OBFUSCATE("https://parallaxserver.online/connect"));
         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_easy_setopt(curl, CURLOPT_URL, lol);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
